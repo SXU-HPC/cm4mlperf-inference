@@ -22,16 +22,15 @@ cm rm cache -f
 cm pull repo mlcommons@cm4mlops --checkout=6dbb26a3da6b8ebdbc96be3be3a0e9817d3b6d26
 
 cm run script \
-	--tags=run-mlperf,inference,_find-performance,_full,_r4.1-dev \
+	--tags=run-mlperf,inference,_r4.1-dev \
 	--model=bert-99 \
 	--implementation=reference \
 	--framework=pytorch \
 	--category=edge \
 	--scenario=Offline \
-	--execution_mode=test \
+	--execution_mode=valid \
 	--device=cpu \
-	--quiet \
-	--test_query_count=100
+	--quiet
 ```
 *Note that if you want to use the [latest automation recipes](https://docs.mlcommons.org/inference) for MLPerf (CM scripts),
  you should simply reload mlcommons@cm4mlops without checkout and clean CM cache as follows:*
@@ -42,3 +41,15 @@ cm pull repo mlcommons@cm4mlops
 cm rm cache -f
 
 ```
+
+## Results
+
+Platform: scc123_cpu0.novalocal-reference-cpu-pytorch_v2.5.0-default_config
+
+Model Precision: fp32
+
+### Accuracy Results 
+`F1`: `90.87487`, Required accuracy for closed division `>= 89.96526`
+
+### Performance Results 
+`Samples per second`: `3.26888`
